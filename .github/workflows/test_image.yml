@@ -12,7 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: redhat-actions/buildah-build@v2
-        image: test-image
-        tags: v1 ${{ github.sha }}
-        containerfiles: |
-          ./Containerfile
+        with:
+          image: test-image
+          tags: v1 ${{ github.sha }}
+          containerfiles: |
+            ./Containerfile
