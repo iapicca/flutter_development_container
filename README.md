@@ -1,7 +1,7 @@
 # flutter_development_container
 
-a container for flutter development inspired by [docker-flutter][docker-flutter#link]
-but based on [buildah][buildah#link] and [podman][podman#link] instead of `docker`
+# WIP do not use!!!a container for flutter development inspired by [docker-flutter][docker-flutter#link]
+but based on [podman][podman#link] instead of `docker`
 
 ### setup
 
@@ -42,3 +42,4 @@ yes "y" | sudo pacman -Syyu \
 [buildah#link]: https://github.com/containers/buildah
 [podman#link]: https://github.com/containers/podman
 [buildah-build#link]: https://github.com/marketplace/actions/buildah-build
+
