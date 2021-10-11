@@ -3,15 +3,18 @@
 name: Create and publish a Docker image
 
 on:
-  push:
-    branches: ['release']
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
-jobs:
+jobs:  
   build-and-push-image:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: read

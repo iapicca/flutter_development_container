@@ -1,0 +1,18 @@
+### https://github.com/redhat-actions/buildah-build
+
+name: Test image
+
+on:
+ pull_request:
+    branches:
+      - main
+
+jobs:
+  test_build:
+    name: test build buildah-build :)
+    runs-on: ubuntu-latest
+   
+    steps:
+        uses: actions/checkout@v2
+        uses: redhat-actions/buildah-build@v2
+     
