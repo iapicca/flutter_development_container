@@ -18,10 +18,11 @@ yes "y" | sudo pacman -Syyu \
 ```
 </details>
 
-### what's next?
+### TODO
 
+- complete test workflow with [buildah-build][buildah-build#link]
+- complete publish workflow with [push-to-registry][push-to-registry#link]
 - use [fvm][fvm#link] instead of curl flutter directly 
-- better setup (more operative system and distros)
 
 #
 
@@ -45,4 +46,5 @@ yes "y" | sudo pacman -Syyu \
 [buildah#link]: https://github.com/containers/buildah
 [podman#link]: https://github.com/containers/podman
 [buildah-build#link]: https://github.com/marketplace/actions/buildah-build
+[push-to-registry#link]: https://github.com/marketplace/actions/push-to-registry
 
