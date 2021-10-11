@@ -9,10 +9,13 @@ on:
 
 jobs:
   test_build:
-    name: test build buildah-build :)
+    name: test build
     runs-on: ubuntu-latest
    
     steps:
         uses: actions/checkout@v2
         uses: redhat-actions/buildah-build@v2
-     
+        image: test-image
+        tags: v1 ${{ github.sha }}
+        containerfiles: |
+          ./Containerfile
