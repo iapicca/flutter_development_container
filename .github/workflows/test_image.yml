@@ -4,8 +4,6 @@ name: Test image
 
 on:
  pull_request:
-    branches:
-      - main
 
 jobs:
   test_build:
