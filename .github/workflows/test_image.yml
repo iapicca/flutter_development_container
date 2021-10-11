@@ -16,4 +16,4 @@ jobs:
           image: test-image
           tags: v1 ${{ github.sha }}
           containerfiles: |
-            ./Containerfile
+            ./build.sh
