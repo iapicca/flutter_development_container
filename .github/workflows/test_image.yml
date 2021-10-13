@@ -17,4 +17,4 @@ jobs:
           tags: v1 ${{ github.sha }}
           oci: true
           containerfiles: |
-            ./build.sh
+            ./containerfile
