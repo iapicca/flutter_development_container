@@ -25,7 +25,7 @@ ENV PATH "${PATH}:/.pub-cache/bin"
 ENV PATH "${PATH}:/fvm/default/bin/"
 
 RUN apt-get update -yqq && \
-    apt-get install -y --no-install-recommends curl expect git sed openjdk-8-jdk wget bash unzip vim sudo apt-transport-https bash ssh libglvnd0  xauth x11-xserver-utils libpulse0 libxcomposite1 libgl1-mesa-glx && \
+    apt-get install -y --no-install-recommends curl expect git sed openjdk-8-jdk wget bash unzip vim sudo apt-transport-https bash ssh libglvnd0 gnupg gnupg2 gnupg1 xauth x11-xserver-utils libpulse0 libxcomposite1 libgl1-mesa-glx && \
     sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' && \
     sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list' && \
     apt-get update -y && \
