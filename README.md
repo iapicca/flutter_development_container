@@ -4,7 +4,7 @@
 
 ### a container for flutter development 
 
-inspired by [docker-flutter][docker-flutter#link] and [flutter-dev-container][flutter-dev-container#link]
+inspired by [docker-flutter][docker-flutter#link], [flutter-dev-container][flutter-dev-container#link] and [docker-android-sdk][docker-android-sdk#link]\
 but based on [podman][podman#link] instead of `docker`
 
 ### setup
@@ -13,8 +13,8 @@ but based on [podman][podman#link] instead of `docker`
 <summary> arch linux</summary>
 
 ```console
-yes "y" | sudo pacman -Syyu \
-&& yes "y" |sudo pacman -S podman
+yes "y" | sudo pacman -Syyu && \
+yes "y" |sudo pacman -S podman
 ```
 </details>
 
@@ -23,6 +23,7 @@ yes "y" | sudo pacman -Syyu \
 - complete test workflow with [buildah-build][buildah-build#link]
 - complete publish workflow with [push-to-registry][push-to-registry#link]
 - use [fvm][fvm#link] instead of curl flutter directly 
+- instead of installing stuff to run the emulator, maybe just screen cast it with `https://github.com/Genymobile/scrcpy`
 
 #
 
@@ -47,4 +48,5 @@ yes "y" | sudo pacman -Syyu \
 [podman#link]: https://github.com/containers/podman
 [buildah-build#link]: https://github.com/marketplace/actions/buildah-build
 [push-to-registry#link]: https://github.com/marketplace/actions/push-to-registry
+[docker-android-sdk#link]:https://github.com/docker-android-sdk/android-29/blob/master/Dockerfile
 
