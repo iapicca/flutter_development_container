@@ -33,10 +33,10 @@ RUN apt-get update -yqq && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log} 
  
-RUN groupadd --gid $GID $USER android && \ 
-    useradd -s /bin/bash --uid $UID --gid $GID -m $USER  && \
-    echo $USER ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USER && \
-    chmod 0440 /etc/sudoers.d/$USER
+RUN groupadd --gid $GID $USER \
+  && useradd -s /bin/bash --uid $UID --gid $GID -m $USER \
+  && echo $USER ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USER \
+  && chmod 0440 /etc/sudoers.d/$USER
 
 COPY tools /opt/tools
 USER $USER
