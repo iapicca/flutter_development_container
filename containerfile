@@ -46,15 +46,15 @@ WORKDIR $HOME
 RUN dart pub global activate fvm && \
     yes "y" | fvm global stable
 
-RUN mkdir -p "$ANDROID_HOME" && \
-    mkdir -p  "$HOME/.android" \
-    touch "$HOME/.android/repositories.cfg" && \
+RUN mkdir -p $ANDROID_HOME && \
+    mkdir -p  $HOME/.android \
+    touch $HOME/.android/repositories.cfg && \
     curl -o android_tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMD_TOOLS_VERSION}_latest.zip && \
-    unzip -qq -d "$ANDROID_HOME" android_tools.zip && \
+    unzip -qq -d $ANDROID_HOME android_tools.zip && \
     rm android_tools.zip \
-    mkdir -p "$ANDROID_HOME/cmdline-tools/tools" \
-    mv "$ANDROID_HOME/cmdline-tools/bin" "$ANDROID_HOME/cmdline-tools/tools" && \
-    mv "$ANDROID_HOME/cmdline-tools/lib" "$ANDROID_HOME/cmdline-tools/tools" && \
+    mkdir -p $ANDROID_HOME/cmdline-tools/tools \
+    mv $ANDROID_HOME/cmdline-tools/bin $ANDROID_HOME/cmdline-tools/tools && \
+    mv $ANDROID_HOME/cmdline-tools/lib $ANDROID_HOME/cmdline-tools/tools && \
     yes "y" | sdkmanager "build-tools;29.0.3" && \
     yes "y" | sdkmanager "platforms;android-29" && \
     yes "y" | sdkmanager "platform-tools" && \
