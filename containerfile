@@ -44,28 +44,27 @@ RUN groupadd --gid $GID $USER && \
 
 COPY tools /opt/tools
 USER $USER
-WORKDIR /home/$USER
+WORKDIR $HOME
 
 RUN dart pub global activate fvm && \
     yes "y" | fvm global stable
 
-###### to move at the bottom later on
-RUN flutter doctor -v
-
-RUN mkdir -p $ANDROID_SDK_ROOT && \
-    mkdir -p /home/$USER/.android && \
-    touch /home/$USER/.android/repositories.cfg && \
+RUN mkdir -p "$ANDROID_SDK_ROOT" && \
+    mkdir -p  "$HOME/.android" \
+    touch "$HOME/.android/repositories.cfg" && \
     curl -o android_tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMD_TOOLS_VERSION}_latest.zip && \
     unzip -qq -d "$ANDROID_SDK_ROOT" android_tools.zip && \
     rm android_tools.zip \
-    mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/tools \
-    mv $ANDROID_SDK_ROOT/cmdline-tools/bin $ANDROID_SDK_ROOT/cmdline-tools/tools && \
-    mv $ANDROID_SDK_ROOT/cmdline-tools/lib $ANDROID_SDK_ROOT/cmdline-tools/tools && \
+    mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools/tools" \
+    mv "$ANDROID_SDK_ROOT/cmdline-tools/bin" "$ANDROID_SDK_ROOT/cmdline-tools/tools" && \
+    mv "$ANDROID_SDK_ROOT/cmdline-tools/lib" "$ANDROID_SDK_ROOT/cmdline-tools/tools" && \
     yes "y" | sdkmanager "build-tools;29.0.3" && \
     yes "y" | sdkmanager "platforms;android-29" && \
     yes "y" | sdkmanager "platform-tools" && \
     yes "y" | sdkmanager "emulator" && \
     yes "y" | sdkmanager "system-images;android-29;google_apis_playstore;x86_64"
+
+RUN flutter doctor
 
 COPY tools/entrypoint.sh /usr/local/bin/
 COPY tools/chown.sh /usr/local/bin/
