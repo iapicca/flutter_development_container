@@ -21,7 +21,7 @@ ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
 ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
 ENV PATH "${PATH}:${ANDROID_HOME}/bin"
 ENV PATH "${PATH}:/usr/lib/dart/bin"
-ENV PATH "${PATH}:/.pub-cache/bin"
+ENV PATH "${PATH}: ${HOME}/.pub-cache/bin"
 ENV PATH "${PATH}:/fvm/default/bin/"
 
 RUN apt-get update -yqq && \
