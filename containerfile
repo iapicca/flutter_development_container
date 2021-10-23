@@ -10,9 +10,6 @@ ENV ANDROID_CMD_TOOLS_VERSION="7583922"
 
 ENV HOME              /home/${USER}
 ENV ANDROID_HOME      ${HOME}/android
-ENV ANDROID_SDK_HOME  ${ANDROID_HOME}
-ENV ANDROID_SDK_ROOT  ${ANDROID_HOME}
-ENV ANDROID_SDK       ${ANDROID_HOME}
 ENV DART_HOME         /usr/lib/dart
 ENV PUB_CACHE         ${HOME}/.pub-cache
 ENV FLUTTER_HOME      ${HOME}/fvm/default
@@ -49,15 +46,15 @@ WORKDIR $HOME
 RUN dart pub global activate fvm && \
     yes "y" | fvm global stable
 
-RUN mkdir -p "$ANDROID_SDK_ROOT" && \
+RUN mkdir -p "$ANDROID_HOME" && \
     mkdir -p  "$HOME/.android" \
     touch "$HOME/.android/repositories.cfg" && \
     curl -o android_tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMD_TOOLS_VERSION}_latest.zip && \
-    unzip -qq -d "$ANDROID_SDK_ROOT" android_tools.zip && \
+    unzip -qq -d "$ANDROID_HOME" android_tools.zip && \
     rm android_tools.zip \
-    mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools/tools" \
-    mv "$ANDROID_SDK_ROOT/cmdline-tools/bin" "$ANDROID_SDK_ROOT/cmdline-tools/tools" && \
-    mv "$ANDROID_SDK_ROOT/cmdline-tools/lib" "$ANDROID_SDK_ROOT/cmdline-tools/tools" && \
+    mkdir -p "$ANDROID_HOME/cmdline-tools/tools" \
+    mv "$ANDROID_HOME/cmdline-tools/bin" "$ANDROID_HOME/cmdline-tools/tools" && \
+    mv "$ANDROID_HOME/cmdline-tools/lib" "$ANDROID_HOME/cmdline-tools/tools" && \
     yes "y" | sdkmanager "build-tools;29.0.3" && \
     yes "y" | sdkmanager "platforms;android-29" && \
     yes "y" | sdkmanager "platform-tools" && \
