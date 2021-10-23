@@ -1,0 +1,49 @@
+name: release
+
+on:
+  push: 
+    branches:
+      - main
+env:
+  REGISTRY_USER: ${{ github.actor }}
+  REGISTRY_PASSWORD: ${{ github.token }}
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  release:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        id: buildah_build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: flutter_development_container
+          tags: latest ${{ github.sha }}
+          oci: true
+          containerfiles: |
+            ./containerfile
+      - name: login
+        id: login_to_ghcr
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+          registry: ${{ env.IMAGE_REGISTRY }}
+      - name: publish
+        id: publish_to_ghcr
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.buildah_build.outputs.image }}
+          tags: ${{ steps.buildah_build.outputs.tags }}
+      - name: release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            conteainerfile
+            release_notes.md
+            LICENSE
+          draft: false
+          prerelease: false
