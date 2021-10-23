@@ -8,22 +8,22 @@ ENV FLUTTER_WEB_PORT="8090"
 ENV FLUTTER_DEBUG_PORT="42000"
 ENV ANDROID_CMD_TOOLS_VERSION="7583922"
 
-ENV HOME              /home/${USER}
-ENV ANDROID_HOME      ${HOME}/android
-ENV DART_HOME         /usr/lib/dart
-ENV PUB_CACHE         ${HOME}/.pub-cache
-ENV FLUTTER_HOME      ${HOME}/fvm/default
+ENV HOME             /home/${USER}
+ENV ANDROID_SDK      ${HOME}/android
+ENV DART_SDK         /usr/lib/dart
+ENV PUB_CACHE        ${HOME}/.pub-cache
+ENV FLUTTER_SDK      ${HOME}/fvm/default
 
-ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
-ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
-ENV PATH "${PATH}:${ANDROID_HOME}/tools/bin"
-ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/30.0.2"
-ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
-ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
-ENV PATH "${PATH}:${ANDROID_HOME}/bin"
-ENV PATH "${PATH}:${DART_HOME}/bin"
+ENV PATH "${PATH}:${ANDROID_SDK}/cmdline-tools/latest/bin"
+ENV PATH "${PATH}:${ANDROID_SDK}/cmdline-tools/tools/bin"
+ENV PATH "${PATH}:${ANDROID_SDK}/tools/bin"
+ENV PATH "${PATH}:${ANDROID_SDK}/build-tools/30.0.2"
+ENV PATH "${PATH}:${ANDROID_SDK}/platform-tools"
+ENV PATH "${PATH}:${ANDROID_SDK}/emulator"
+ENV PATH "${PATH}:${ANDROID_SDK}/bin"
+ENV PATH "${PATH}:${DART_SDK}/bin"
 ENV PATH "${PATH}:${PUB_CACHE}/bin"
-ENV PATH "${PATH}:${FLUTTER_HOME}/bin"
+ENV PATH "${PATH}:${FLUTTER_SDK}/bin"
 
 RUN apt-get update -yqq && \
     apt-get install -y --no-install-recommends curl expect git sed openjdk-8-jdk wget bash unzip vim sudo apt-transport-https bash ssh libglvnd0 gnupg gnupg2 gnupg1 xauth x11-xserver-utils libpulse0 libxcomposite1 libgl1-mesa-glx && \
@@ -44,17 +44,18 @@ USER $USER
 WORKDIR $HOME
 
 RUN dart pub global activate fvm && \
-    yes "y" | fvm global stable
+    yes "y" | fvm global stable && \
+    flutter config --android-sdk $ANDROID_SDK
 
-RUN mkdir -p $ANDROID_HOME && \
+RUN mkdir -p $ANDROID_SDK && \
     mkdir -p  $HOME/.android && \
     touch $HOME/.android/repositories.cfg && \
     curl -o android_tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMD_TOOLS_VERSION}_latest.zip && \
-    unzip -qq -d $ANDROID_HOME android_tools.zip && \
+    unzip -qq -d $ANDROID_SDK android_tools.zip && \
     rm android_tools.zip && \
-    mkdir -p $ANDROID_HOME/cmdline-tools/tools && \
-    mv $ANDROID_HOME/cmdline-tools/bin $ANDROID_HOME/cmdline-tools/tools && \
-    mv $ANDROID_HOME/cmdline-tools/lib $ANDROID_HOME/cmdline-tools/tools && \
+    mkdir -p $ANDROID_SDK/cmdline-tools/tools && \
+    mv $ANDROID_SDK/cmdline-tools/bin $ANDROID_SDK/cmdline-tools/tools && \
+    mv $ANDROID_SDK/cmdline-tools/lib $ANDROID_SDK/cmdline-tools/tools && \
     yes "y" | sdkmanager "build-tools;29.0.3" && \
     yes "y" | sdkmanager "platforms;android-29" && \
     yes "y" | sdkmanager "platform-tools" && \

@@ -42,7 +42,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            Release.txt
+            conteainerfile
+            release_notes.md
             LICENSE
           draft: false
           prerelease: false
