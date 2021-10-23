@@ -46,7 +46,7 @@ USER $USER
 WORKDIR /home/$USER
 
 RUN dart pub global activate fvm && \
-    fvm global stable
+    fvm global stable -y
 
 RUN mkdir -p $ANDROID_SDK_ROOT \
   && mkdir -p /home/$USER/.android \
