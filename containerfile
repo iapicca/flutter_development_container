@@ -47,7 +47,7 @@ RUN dart pub global activate fvm && \
     yes "y" | fvm global stable
 
 RUN mkdir -p $ANDROID_HOME && \
-    mkdir -p  $HOME/.android \
+    mkdir -p  $HOME/.android && \
     touch $HOME/.android/repositories.cfg && \
     curl -o android_tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMD_TOOLS_VERSION}_latest.zip && \
     unzip -qq -d $ANDROID_HOME android_tools.zip && \
