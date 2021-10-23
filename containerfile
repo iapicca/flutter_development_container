@@ -15,7 +15,7 @@ ENV ANDROID_SDK_ROOT  ${ANDROID_HOME}
 ENV ANDROID_SDK       ${ANDROID_HOME}
 ENV DART_HOME         /usr/lib/dart
 ENV PUB_CACHE         ${HOME}/.pub-cache
-ENV FLUTTER_HOME      /fvm/default
+ENV FLUTTER_HOME      ${HOME}/fvm/default
 
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
