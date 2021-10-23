@@ -51,8 +51,8 @@ RUN mkdir -p $ANDROID_HOME && \
     touch $HOME/.android/repositories.cfg && \
     curl -o android_tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMD_TOOLS_VERSION}_latest.zip && \
     unzip -qq -d $ANDROID_HOME android_tools.zip && \
-    rm android_tools.zip \
-    mkdir -p $ANDROID_HOME/cmdline-tools/tools \
+    rm android_tools.zip && \
+    mkdir -p $ANDROID_HOME/cmdline-tools/tools && \
     mv $ANDROID_HOME/cmdline-tools/bin $ANDROID_HOME/cmdline-tools/tools && \
     mv $ANDROID_HOME/cmdline-tools/lib $ANDROID_HOME/cmdline-tools/tools && \
     yes "y" | sdkmanager "build-tools;29.0.3" && \
