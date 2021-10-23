@@ -1,10 +1,11 @@
 ### https://github.com/redhat-actions/buildah-build
 
-name: Test image
+name: test
 
 on:
  pull_request:
-
+    branches-ignore:
+      - main
 jobs:
   test_build:
     name: test build
@@ -14,7 +15,6 @@ jobs:
       - uses: redhat-actions/buildah-build@v2
         with:
           image: test-image
-          tags: v1 ${{ github.sha }}
           oci: true
           containerfiles: |
             ./containerfile
