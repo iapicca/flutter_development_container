@@ -12,6 +12,9 @@ ENV ANDROID_HOME      ${HOME}/android
 ENV ANDROID_SDK_HOME  ${ANDROID_HOME}
 ENV ANDROID_SDK_ROOT  ${ANDROID_HOME}
 ENV ANDROID_SDK       ${ANDROID_HOME}
+ENV DART_HOME         /usr/lib/dart/
+ENV PUB_CACHE         ${DART_HOME}/.pub-cache
+ENV FLUTTER_HOME      /fvm/default/
 
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
@@ -20,9 +23,9 @@ ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/30.0.2"
 ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
 ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
 ENV PATH "${PATH}:${ANDROID_HOME}/bin"
-ENV PATH "${PATH}:/usr/lib/dart/bin"
-ENV PATH "${PATH}: ${HOME}/.pub-cache/bin"
-ENV PATH "${PATH}:/fvm/default/bin/"
+ENV PATH "${PATH}:${DART_HOME}/bin"
+ENV PATH "${PATH}:${PUB_CACHE}/bin"
+ENV PATH "${PATH}:${FLUTTER_HOME}/bin"
 
 RUN apt-get update -yqq && \
     apt-get install -y --no-install-recommends curl expect git sed openjdk-8-jdk wget bash unzip vim sudo apt-transport-https bash ssh libglvnd0 gnupg gnupg2 gnupg1 xauth x11-xserver-utils libpulse0 libxcomposite1 libgl1-mesa-glx && \
