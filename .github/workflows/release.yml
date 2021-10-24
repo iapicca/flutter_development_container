@@ -37,6 +37,7 @@ jobs:
         with:
           image: ${{ steps.buildah_build.outputs.image }}
           tags: ${{ steps.buildah_build.outputs.tags }}
+          registry: ${{ env.IMAGE_REGISTRY }}/${{ steps.buildah_build.image }}
       - name: release
         id: release
         uses: softprops/action-gh-release@v1

@@ -1,11 +1,8 @@
-### https://github.com/redhat-actions/buildah-build
-
 name: test
 
 on:
  pull_request:
-    branches-ignore:
-      - main
+ 
 jobs:
   test_build:
     name: test build
