@@ -39,7 +39,8 @@ RUN apt-get update -yqq && \
 #     echo $USER ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USER && \
 #     chmod 0440 /etc/sudoers.d/$USER
 
-COPY tools /opt/tools
+# COPY tools /opt/tools
+
 USER $USER
 WORKDIR $HOME
 
