@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 
-# ENV UID=1000
-# ENV GID=1000
+ENV UID=1000
+ENV GID=1000
 ENV USER="developer"
 ENV FLUTTER_WEB_PORT="8090"
 ENV FLUTTER_DEBUG_PORT="42000"
@@ -34,8 +34,8 @@ RUN apt-get update -yqq && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log} 
  
-# RUN groupadd --gid $GID $USER && \
-#     useradd -s /bin/bash --uid $UID --gid $GID -m $USER && \
+RUN groupadd --gid $GID $USER && \
+    useradd -s /bin/bash --uid $UID --gid $GID -m $USER
 #     echo $USER ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USER && \
 #     chmod 0440 /etc/sudoers.d/$USER
 
