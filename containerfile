@@ -63,7 +63,7 @@ RUN mkdir -p $ANDROID_SDK && \
     yes "y" | sdkmanager "emulator" && \
     yes "y" | sdkmanager "system-images;android-29;google_apis_playstore;x86_64"
 
-COPY tools/entrypoint.sh /usr/local/bin/
-COPY tools/chown.sh /usr/local/bin/
-COPY tools/flutter-android-emulator.sh /usr/local/bin/flutter-android-emulator
+# COPY tools/entrypoint.sh /usr/local/bin/
+# COPY tools/chown.sh /usr/local/bin/
+# COPY tools/flutter-android-emulator.sh /usr/local/bin/flutter-android-emulator
 ENTRYPOINT [ flutter doctor -v ]
